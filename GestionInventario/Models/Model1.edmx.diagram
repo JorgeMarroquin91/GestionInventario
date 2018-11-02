@@ -30,6 +30,9 @@
         <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Lote_Medicamento" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Ventas_Lote" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Usuario_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Compras_Kardex" />
+        <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Kardex_Medicamento" />
+        <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Ventas_Kardex" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,6 +18,7 @@ namespace GestionInventario.Models
         public Medicamento()
         {
             this.Lote = new HashSet<Lote>();
+            this.Kardex = new HashSet<Kardex>();
         }
     
         public int idMedicamento { get; set; }
@@ -28,5 +29,7 @@ namespace GestionInventario.Models
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Lote> Lote { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kardex> Kardex { get; set; }
     }
 }

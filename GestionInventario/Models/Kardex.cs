@@ -14,13 +14,26 @@ namespace GestionInventario.Models
     
     public partial class Kardex
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Kardex()
+        {
+            this.Compras1 = new HashSet<Compras>();
+            this.Ventas1 = new HashSet<Ventas>();
+        }
+    
         public int idKardex { get; set; }
         public Nullable<decimal> saldo { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public int idVenta { get; set; }
         public int idCompra { get; set; }
+        public int idMedicamento { get; set; }
     
         public virtual Compras Compras { get; set; }
         public virtual Ventas Ventas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Compras> Compras1 { get; set; }
+        public virtual Medicamento Medicamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ventas> Ventas1 { get; set; }
     }
 }

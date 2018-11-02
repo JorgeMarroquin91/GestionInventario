@@ -25,10 +25,12 @@ namespace GestionInventario.Models
         public Nullable<decimal> precioVenta { get; set; }
         public Nullable<int> idDescuento { get; set; }
         public Nullable<int> idLote { get; set; }
+        public Nullable<int> idKardex { get; set; }
     
         public virtual Descuento Descuento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kardex> Kardex { get; set; }
         public virtual Lote Lote { get; set; }
+        public virtual Kardex Kardex1 { get; set; }
     }
 }
