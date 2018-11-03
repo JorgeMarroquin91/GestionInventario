@@ -39,8 +39,8 @@ namespace GestionInventario.Controllers
         // GET: Compras/Create
         public ActionResult Create()
         {
-            ViewBag.idLote = new SelectList(db.Lote, "idLote", "idLote");
             ViewBag.idKardex = new SelectList(db.Kardex, "idKardex", "idKardex");
+            
             return View();
         }
 
@@ -49,8 +49,20 @@ namespace GestionInventario.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCompra,cantidad,precioCompra,idLote,idKardex")] Compras compras)
+        public ActionResult Create([Bind(Include = "idCompra,cantidad,precioCompra,idLote,idKardex,fecha")] Compras compras)
         {
+            Kardex kar = new Kardex();
+            Inventario inv = new Inventario();
+            Detalle det = new Detalle();
+
+            if(compras.idLote==null)
+            {
+                return RedirectToAction("Create","Lotes",compras.idKardex);
+            }
+
+            det.idLote = compras.idLote;
+            det.idInventario = inv.idInventario;        
+
             if (ModelState.IsValid)
             {
                 db.Compras.Add(compras);
@@ -85,7 +97,7 @@ namespace GestionInventario.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCompra,cantidad,precioCompra,idLote,idKardex")] Compras compras)
+        public ActionResult Edit([Bind(Include = "idCompra,cantidad,precioCompra,idLote,idKardex,fecha")] Compras compras)
         {
             if (ModelState.IsValid)
             {

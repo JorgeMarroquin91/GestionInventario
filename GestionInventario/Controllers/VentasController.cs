@@ -50,7 +50,7 @@ namespace GestionInventario.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idVenta,cantidad,precioVenta,idDescuento,idLote,idKardex")] Ventas ventas)
+        public ActionResult Create([Bind(Include = "idVenta,cantidad,precioVenta,idDescuento,idLote,idKardex,fecha")] Ventas ventas)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace GestionInventario.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idVenta,cantidad,precioVenta,idDescuento,idLote,idKardex")] Ventas ventas)
+        public ActionResult Edit([Bind(Include = "idVenta,cantidad,precioVenta,idDescuento,idLote,idKardex,fecha")] Ventas ventas)
         {
             if (ModelState.IsValid)
             {

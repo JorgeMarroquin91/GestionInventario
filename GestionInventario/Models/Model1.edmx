@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DB_A41D6A_GestionInventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DB_A41D6A_GestionInventarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="idCategoria" />
@@ -21,6 +21,7 @@
           <Property Name="precioCompra" Type="numeric" Precision="18" Scale="0" />
           <Property Name="idLote" Type="int" />
           <Property Name="idKardex" Type="int" />
+          <Property Name="fecha" Type="date" />
         </EntityType>
         <EntityType Name="Descuento">
           <Key>
@@ -63,7 +64,6 @@
           </Key>
           <Property Name="idKardex" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="saldo" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="fecha" Type="date" />
           <Property Name="idMedicamento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Lote">
@@ -123,6 +123,7 @@
           <Property Name="idDescuento" Type="int" />
           <Property Name="idLote" Type="int" />
           <Property Name="idKardex" Type="int" />
+          <Property Name="fecha" Type="date" />
         </EntityType>
         <Association Name="FK_Compra_Lote">
           <End Role="Lote" Type="Self.Lote" Multiplicity="0..1">
@@ -369,8 +370,7 @@
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DB_A41D6A_GestionInventarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -393,6 +393,7 @@
           <Property Name="idKardex" Type="Int32" />
           <NavigationProperty Name="Lote" Relationship="Self.FK_Compra_Lote" FromRole="Compras" ToRole="Lote" />
           <NavigationProperty Name="Kardex" Relationship="Self.FK_Compras_Kardex" FromRole="Compras" ToRole="Kardex" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Descuento">
           <Key>
@@ -442,7 +443,6 @@
           </Key>
           <Property Name="idKardex" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="saldo" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="idMedicamento" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Compras" Relationship="Self.FK_Compras_Kardex" FromRole="Kardex" ToRole="Compras" />
           <NavigationProperty Name="Medicamento" Relationship="Self.FK_Kardex_Medicamento" FromRole="Kardex" ToRole="Medicamento" />
@@ -518,6 +518,7 @@
           <NavigationProperty Name="Descuento" Relationship="Self.FK_Ventas_Descuento" FromRole="Ventas" ToRole="Descuento" />
           <NavigationProperty Name="Kardex" Relationship="Self.FK_Ventas_Kardex" FromRole="Ventas" ToRole="Kardex" />
           <NavigationProperty Name="Lote" Relationship="Self.FK_Ventas_Lote" FromRole="Ventas" ToRole="Lote" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="FK_Medicamento_Categoria">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
@@ -781,6 +782,7 @@
           <EntitySetMapping Name="Compras">
             <EntityTypeMapping TypeName="DB_A41D6A_GestionInventarioModel.Compras">
               <MappingFragment StoreEntitySet="Compras">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idCompra" ColumnName="idCompra" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="precioCompra" ColumnName="precioCompra" />
@@ -833,7 +835,6 @@
               <MappingFragment StoreEntitySet="Kardex">
                 <ScalarProperty Name="idKardex" ColumnName="idKardex" />
                 <ScalarProperty Name="saldo" ColumnName="saldo" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idMedicamento" ColumnName="idMedicamento" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -893,6 +894,7 @@
           <EntitySetMapping Name="Ventas">
             <EntityTypeMapping TypeName="DB_A41D6A_GestionInventarioModel.Ventas">
               <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idVenta" ColumnName="idVenta" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
                 <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />

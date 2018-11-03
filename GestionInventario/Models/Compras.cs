@@ -19,6 +19,7 @@ namespace GestionInventario.Models
         public Nullable<decimal> precioCompra { get; set; }
         public Nullable<int> idLote { get; set; }
         public Nullable<int> idKardex { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
     
         public virtual Lote Lote { get; set; }
         public virtual Kardex Kardex { get; set; }

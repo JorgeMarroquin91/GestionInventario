@@ -39,7 +39,7 @@ namespace GestionInventario.Controllers
         // GET: Lotes/Create
         public ActionResult Create()
         {
-            ViewBag.idMedicamento = new SelectList(db.Medicamento, "idMedicamento", "nombreMedicamento");
+            ViewBag.idMedicamento = new SelectList(db.Medicamento,"idMedicamento","nombreMedicamento");
             return View();
         }
 
@@ -54,7 +54,7 @@ namespace GestionInventario.Controllers
             {
                 db.Lote.Add(lote);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create","Compras");
             }
 
             ViewBag.idMedicamento = new SelectList(db.Medicamento, "idMedicamento", "nombreMedicamento", lote.idMedicamento);

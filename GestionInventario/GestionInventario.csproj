@@ -355,11 +355,6 @@
     <Content Include="Views\Categorias\Details.cshtml" />
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Categorias\Index.cshtml" />
-    <Content Include="Views\Compras\Create.cshtml" />
-    <Content Include="Views\Compras\Delete.cshtml" />
-    <Content Include="Views\Compras\Details.cshtml" />
-    <Content Include="Views\Compras\Edit.cshtml" />
-    <Content Include="Views\Compras\Index.cshtml" />
     <Content Include="Views\Descuentoes\Create.cshtml" />
     <Content Include="Views\Descuentoes\Delete.cshtml" />
     <Content Include="Views\Descuentoes\Details.cshtml" />
@@ -380,11 +375,6 @@
     <Content Include="Views\Inventarios\Details.cshtml" />
     <Content Include="Views\Inventarios\Edit.cshtml" />
     <Content Include="Views\Inventarios\Index.cshtml" />
-    <Content Include="Views\Kardexes\Create.cshtml" />
-    <Content Include="Views\Kardexes\Delete.cshtml" />
-    <Content Include="Views\Kardexes\Details.cshtml" />
-    <Content Include="Views\Kardexes\Edit.cshtml" />
-    <Content Include="Views\Kardexes\Index.cshtml" />
     <Content Include="Views\Lotes\Create.cshtml" />
     <Content Include="Views\Lotes\Delete.cshtml" />
     <Content Include="Views\Lotes\Details.cshtml" />
@@ -405,11 +395,21 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Kardexes\Create.cshtml" />
+    <Content Include="Views\Kardexes\Delete.cshtml" />
+    <Content Include="Views\Kardexes\Details.cshtml" />
+    <Content Include="Views\Kardexes\Edit.cshtml" />
+    <Content Include="Views\Kardexes\Index.cshtml" />
     <Content Include="Views\Ventas\Create.cshtml" />
     <Content Include="Views\Ventas\Delete.cshtml" />
     <Content Include="Views\Ventas\Details.cshtml" />
     <Content Include="Views\Ventas\Edit.cshtml" />
     <Content Include="Views\Ventas\Index.cshtml" />
+    <Content Include="Views\Compras\Create.cshtml" />
+    <Content Include="Views\Compras\Delete.cshtml" />
+    <Content Include="Views\Compras\Details.cshtml" />
+    <Content Include="Views\Compras\Edit.cshtml" />
+    <Content Include="Views\Compras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
