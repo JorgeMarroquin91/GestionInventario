@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using GestionInventario.Models;
 
 namespace GestionInventario.Controllers
@@ -13,6 +14,13 @@ namespace GestionInventario.Controllers
     public class LotesController : Controller
     {
         private DB_A41D6A_GestionInventarioEntities db = new DB_A41D6A_GestionInventarioEntities();
+
+        public class Lotes{
+            public string numLote { get; set;}
+            public string cantidadLote { get; set; }
+            public string fechaVencimiento { get; set; }
+            public string idMedicamento { get; set; }
+        }
 
         // GET: Lotes
         public ActionResult Index()
@@ -37,9 +45,35 @@ namespace GestionInventario.Controllers
         }
 
         // GET: Lotes/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.idMedicamento = new SelectList(db.Medicamento,"idMedicamento","nombreMedicamento");
+            Medicamento medicamento = new Medicamento();
+            var kar = from k in db.Kardex
+                      where k.idKardex == id
+                      select k;
+            int idMedicamento = 0;
+
+            foreach (Kardex kard in kar)
+            {
+                if (kard.idKardex == id)
+                {
+                    idMedicamento = kard.idMedicamento;
+                    break;
+                }
+            }
+
+            var med = from m in db.Medicamento
+                      where m.idMedicamento == idMedicamento
+                      select m;
+
+            foreach (Medicamento medi in med)
+            {
+                medicamento = medi;
+                break;
+            }
+
+            ViewBag.idMedicamento = new SelectList(from m in db.Medicamento where m.idMedicamento == idMedicamento select m , "idMedicamento", "nombreMedicamento");
+
             return View();
         }
 
@@ -58,7 +92,22 @@ namespace GestionInventario.Controllers
             }
 
             ViewBag.idMedicamento = new SelectList(db.Medicamento, "idMedicamento", "nombreMedicamento", lote.idMedicamento);
-            return View(lote);
+            return Json(lote.idLote);
+        }
+
+        [HttpGet]
+        public ActionResult Prueba()
+        {
+            ViewBag.idMedicamento = new SelectList(db.Medicamento, "idMedicamento", "nombreMedicamento");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Prueba([Bind(Include = "idLote,numLote,cantidadLote,fechaVencimiento,idMedicamento")] Lote lote)
+        {
+            return Json(lote.idMedicamento);
         }
 
         // GET: Lotes/Edit/5

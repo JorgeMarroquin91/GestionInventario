@@ -37,10 +37,18 @@ namespace GestionInventario.Controllers
         }
 
         // GET: Compras/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idlote)
         {
+            if (idlote == null)
+            {
+                ViewBag.idKardex = new SelectList(db.Kardex, "idKardex", "idKardex");
+                ViewBag.idLote = new SelectList(from l in db.Lote where l.idLote == null select l, "idLote", "idLote");
+                return View();
+            }
+
             ViewBag.idKardex = new SelectList(db.Kardex, "idKardex", "idKardex");
-            
+            ViewBag.idLote = new SelectList(from l in db.Lote where l.idLote == null select l, "idLote", "idLote");
+
             return View();
         }
 
@@ -54,11 +62,6 @@ namespace GestionInventario.Controllers
             Kardex kar = new Kardex();
             Inventario inv = new Inventario();
             Detalle det = new Detalle();
-
-            if(compras.idLote==null)
-            {
-                return RedirectToAction("Create","Lotes",compras.idKardex);
-            }
 
             det.idLote = compras.idLote;
             det.idInventario = inv.idInventario;        
@@ -143,6 +146,12 @@ namespace GestionInventario.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Prueba()
+        {
+            ViewBag.idKardex = new SelectList(db.Kardex, "idKardex", "idKardex");
+            return View();
         }
     }
 }

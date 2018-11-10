@@ -1,0 +1,34 @@
+﻿@model GestionInventario.Models.Compras
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+@{
+    /**/
+
+    ViewBag.Title = "Prueba";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Prueba</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Kardex.idMedicamento, "idMedicamento", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(Model => Model.idKardex, ViewBag.idKardex as SelectList, "selecionar id", new { id = "idKardex", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Kardex.idMedicamento, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <input type="button" class="btn btn-default" id="lotes" value="Lotes">
+}
+
+@section scripts{
+    <script>
+            $(function () {
+                $("#lotes").click(function () {
+                    alert($("#idKardex").val());
+                    $.get('@Url.Action("Create","Lotes")', {id: $("#idKardex").val()});
+                });
+            });
+    </script>
+}

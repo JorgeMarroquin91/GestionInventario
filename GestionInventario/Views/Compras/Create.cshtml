@@ -1,4 +1,5 @@
 ﻿@model GestionInventario.Models.Compras
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 @{
     ViewBag.Title = "Create";
@@ -40,31 +41,36 @@
         </div>
     </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Kardex.idMedicamento, "idMedicamento", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("idKardex", null,new { @disabled = "disabled"})
-                        @Html.ValidationMessageFor(model => model.Kardex.idMedicamento, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <ul>@Html.ActionLink("Lotes", "Create", "Lotes")</ul>
-                    </div>
-                </div>
-
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+        @Html.LabelFor(model => model.Kardex.idKardex, "idKardex", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(Model => Model.idKardex, ViewBag.idKardex as SelectList, new { id = "idKar", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Kardex.idKardex, "", new { @class = "text-danger" })
         </div>
     </div>
-</div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+    <div class="form-group">
+        @Html.LabelFor(model => model.idLote, "idLote", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(Model => Model.idLote, ViewBag.idLote as SelectList, new { id = "idLote", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.idLote, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+    @Html.ActionLink("Lotes", "Create", "Lotes", new { id = "id" }, new { id = "lotes", onclick = "Agregar();" })
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts{
+    <script>
+        function Agregar() {
+            $('#lotes').attr('href', function () {
+                return this.href.replace('id', $('#idKar').val());
+            });
+        };
+    </script>
+}
