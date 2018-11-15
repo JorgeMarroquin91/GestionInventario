@@ -88,7 +88,7 @@ namespace GestionInventario.Controllers
             {
                 db.Lote.Add(lote);
                 db.SaveChanges();
-                return RedirectToAction("Create","Compras");
+                return Json(lote.idLote);
             }
 
             ViewBag.idMedicamento = new SelectList(db.Medicamento, "idMedicamento", "nombreMedicamento", lote.idMedicamento);

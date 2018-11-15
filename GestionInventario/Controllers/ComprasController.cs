@@ -46,8 +46,9 @@ namespace GestionInventario.Controllers
                 return View();
             }
 
+
             ViewBag.idKardex = new SelectList(db.Kardex, "idKardex", "idKardex");
-            ViewBag.idLote = new SelectList(from l in db.Lote where l.idLote == null select l, "idLote", "idLote");
+            ViewBag.idLote = new SelectList(from l in db.Lote where l.idLote == idlote select l, "idLote", "idLote");
 
             return View();
         }

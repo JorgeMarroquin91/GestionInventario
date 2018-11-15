@@ -52,7 +52,7 @@ namespace GestionInventario.Controllers
             {
                 db.Descuento.Add(descuento);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Json(descuento.idDescuento);
             }
 
             return View(descuento);

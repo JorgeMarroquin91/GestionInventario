@@ -1,12 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 </head>
 <body>
@@ -28,8 +29,8 @@
                     <li>@Html.ActionLink("Rol", "Index", "Rols")</li>
                     <li>@Html.ActionLink("Inventario", "Index", "Inventarios")</li>
                     <li>@Html.ActionLink("Kardex", "Index", "Kardexes")</li>
-                    <li>@Html.ActionLink("Entrada", "Index", "Ventas")</li>
-                    <li>@Html.ActionLink("Salida", "Index", "Compras")</li>
+                    <li>@Html.ActionLink("Salida", "Index", "Ventas")</li>
+                    <li>@Html.ActionLink("Entrada", "Index", "Compras")</li>
                     <li>@Html.ActionLink("Lote", "Index", "Lotes")</li>
                     <li>@Html.ActionLink("Medicamento", "Index", "Medicamentoes")</li>
                     <li>@Html.ActionLink("Categoria", "Index", "Categorias")</li>

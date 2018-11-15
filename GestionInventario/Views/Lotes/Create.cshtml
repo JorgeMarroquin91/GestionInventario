@@ -1,5 +1,6 @@
 ﻿@model GestionInventario.Models.Lote
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Create";
@@ -8,55 +9,52 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "idform" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>@ViewBag.id</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.numLote, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.numLote, new { id = "numLote", htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.numLote, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>@ViewBag.id</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.numLote, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numLote, new { id = "numLote", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numLote, "", new { @class = "text-danger" })
+            </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.cantidadLote, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cantidadLote, new { id = "cantidadLote", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cantidadLote, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fechaVencimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fechaVencimiento, new { id = "fechaVencimiento", htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.fechaVencimiento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idMedicamento, "idMedicamento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.idMedicamento, ViewBag.idMedicamento as SelectList, new { id = "idMed", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idMedicamento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input type="button" value="Create" id="btnCreate" class="btn btn-default" />
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.cantidadLote, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.cantidadLote, new { id = "cantidadLote", htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cantidadLote, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.fechaVencimiento, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.fechaVencimiento, new { id = "fechaVencimiento", htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.fechaVencimiento, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.idMedicamento, "idMedicamento", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(model => model.idMedicamento, ViewBag.idMedicamento as SelectList, new { id = "idMed", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.idMedicamento, "", new { @class = "text-danger" })
-        </div>
-    </div>
-        
-    <input type="button" value="Create" id="btnCreate" />
-
-    <!--<div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" id="create" />
-        </div>
-    </div>-->
-</div>
 }
+
+@Html.ActionLink("Lotes", "Create", "Compras", new { idlote = "idLote" }, new { id = "lotes" })
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -67,21 +65,26 @@
 }
 
 <script>
-    $(function () {
-        $('#btnCreate').click(function () {
-            $.ajax({
-                url: '/Lotes/Create',
-                type: 'post',
-                dataType: 'json',
-                contents: "application/json; charset=utf-8",
-                data: {
-                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
-                    lote: { numLote: $("#numLote").val(), cantidadLote: $("#cantidadLote").val(), fechaVencimiento: $("#fechaVencimiento").val(), idMedicamento: $("#idMed").val() }
-                },
-                success: function (idLote) {
-                    alert(idLote);
-                }
-            });
+    $(document).ready(function () {
+        $("#lotes").hide();
+    });
+    $("#btnCreate").click(function () {
+        $.ajax({
+            url: '/Lotes/Create',
+            type: 'post',
+            dataType: 'json',
+            contents: "application/json; charset=utf-8",
+            data: {
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                lote: { numLote: $("#numLote").val(), cantidadLote: $("#cantidadLote").val(), fechaVencimiento: $("#fechaVencimiento").val(), idMedicamento: $("#idMed").val() }
+            }, success: function (idlote) {
+                $("#idform").hide();
+                $("#lotes").show();
+                $("#lotes").attr("href", function () {
+                    return this.href.replace("idLote", idlote);
+                });
+                alert("Numero de lote: " + idlote);
+            }
         });
     });
 </script>

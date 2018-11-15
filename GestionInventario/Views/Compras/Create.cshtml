@@ -20,15 +20,15 @@
     <div class="form-group">
         @Html.LabelFor(model => model.cantidad, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.cantidad, new { htmlAttributes = new {id="cantidad" ,@class = "form-control"} })
             @Html.ValidationMessageFor(model => model.cantidad, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.precioCompra, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.precioCompra, htmlAttributes: new {@class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.precioCompra, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.precioCompra, new { htmlAttributes = new { id = "precio", @class = "form-control"} })
             @Html.ValidationMessageFor(model => model.precioCompra, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -36,7 +36,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.fecha, new { htmlAttributes = new {id="fecha", @class = "form-control"} })
             @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -52,12 +52,11 @@
         @Html.LabelFor(model => model.idLote, "idLote", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(Model => Model.idLote, ViewBag.idLote as SelectList, new { id = "idLote", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.idLote, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.idLote, "", new {@class = "text-danger" })
+            @Html.ActionLink("Agregar Lote", "Create", "Lotes", new { id = "id" }, new { id = "lotes", onclick = "Agregar();",@class="btn btn-default" })
         </div>
     </div>
-
-    @Html.ActionLink("Lotes", "Create", "Lotes", new { id = "id" }, new { id = "lotes", onclick = "Agregar();" })
-
+    <input type="submit" value="Create" class="btn btn-default">
 </div>
 }
 
@@ -67,8 +66,19 @@
 
 @section scripts{
     <script>
+        $(document).ready(function () {
+            if ($("#idLote").val() == null) {
+                $("#idLote").hide();
+                $("#fecha").attr("disabled", true);
+                $("#precio").attr("disabled", true);
+                $("#cantidad").attr("disabled", true);
+            } else {
+                $("#lotes").hide();
+            }
+        });
         function Agregar() {
             $('#lotes').attr('href', function () {
+                $("#idLote").show();
                 return this.href.replace('id', $('#idKar').val());
             });
         };

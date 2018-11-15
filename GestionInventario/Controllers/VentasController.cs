@@ -37,11 +37,11 @@ namespace GestionInventario.Controllers
         }
 
         // GET: Ventas/Create
-        public ActionResult Create()
+        public ActionResult Create(int? idDescuento)
         {
-            ViewBag.idDescuento = new SelectList(db.Descuento, "idDescuento", "idDescuento");
+
+            ViewBag.idDescuento = new SelectList(from d in db.Descuento where d.idDescuento == idDescuento select d, "idDescuento", "idDescuento");
             ViewBag.idKardex = new SelectList(db.Kardex, "idKardex", "idKardex");
-            ViewBag.idLote = new SelectList(db.Lote, "idLote", "idLote");
             return View();
         }
 

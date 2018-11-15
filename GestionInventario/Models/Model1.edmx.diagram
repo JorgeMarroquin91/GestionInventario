@@ -7,16 +7,16 @@
       <Diagram DiagramId="dff8001356ac4794847643bed2bde5ab" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Categoria" Width="1.5" PointX="5.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Compras" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Descuento" Width="1.5" PointX="5.625" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Descuento" Width="1.5" PointX="7.625" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Detalle" Width="1.5" PointX="9.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Empresa" Width="1.5" PointX="12" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Empresa" Width="1.5" PointX="11.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Inventario" Width="1.5" PointX="9.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Kardex" Width="1.5" PointX="2.25" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Lote" Width="1.5" PointX="7.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Medicamento" Width="1.5" PointX="3.625" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Rol" Width="1.5" PointX="9.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Rol" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.sysdiagrams" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Usuario" Width="1.5" PointX="12" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Usuario" Width="1.5" PointX="12.125" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_A41D6A_GestionInventarioModel.Ventas" Width="1.5" PointX="1.875" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Medicamento_Categoria" ManuallyRouted="false" />
         <AssociationConnector Association="DB_A41D6A_GestionInventarioModel.FK_Compra_Lote" ManuallyRouted="false" />
